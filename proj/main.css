@@ -1,0 +1,50 @@
+body {
+    background-color: #FDF0D5;
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+}
+
+.header {
+    color: #3A7D44;
+    letter-spacing: 8px;
+    font-style: italic;
+}
+
+.post-container {
+    border: 1.5px solid black;
+}
+
+.link {
+    color: #427AA1;
+    font-style: italic;
+}
+
+.post-header {
+    color: #3A7D44;
+    letter-spacing: normal;
+    font-style: italic; 
+}
+
+.subtext {
+    font-style: italic;
+    font-weight: lighter;
+}
+
+header {
+    background-color: #3A7D44;
+    padding: 5px;
+    font-weight: bolder ;
+}
+footer {    
+    background-color: #3A7D44;
+    padding: 5px;
+    font-weight: bolder;
+}
+#title {
+    letter-spacing: -3px;
+    color: black;
+}
+
+#post-header {
+    font-style: normal;
+}
