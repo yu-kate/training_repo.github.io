@@ -1,0 +1,141 @@
+/*
+    content, padding, border, margin
+*/
+
+.content { /* gen filled w text*/
+    width: 300px;
+    height: 300px;
+}
+
+.padded { /* surrounds content w transparent whitespace*/
+    padding: 5px;
+    padding-top: 5px; /*top, bottom, left, right*/
+}
+
+.bordered { /* adds border pattern/color */
+    border: 1px solid black; /*border-width border-style border-color*/
+}
+
+/*Padding creates space inside an element, while margin creates space between elements.*/
+.margined { /* space around an element */
+    margin: 20px; /*top, right, bottom, left*/
+
+    /*
+    margin collapse: if two margins are adjacent to one another,
+        resulting margin will only be the larger indiv margin
+    */
+}
+
+
+/*
+    position: static (the default), relative, fixed, absolute, sticky
+
+    static: "normal" flow, elements appear one after another
+    relative: offset from normal flow
+    fixed: offset from viewport (edge of browser), will always be in user's fov
+    absolute: offset from ancestor element, can overlap w other elements
+    sticky: in default view, is relative; scroll past, is fixed
+
+    overlap priority set by z-index
+        default: 0
+        ontop: high number
+*/
+
+#element {
+    top: 30px; /*offset property; top, bottom, right, left*/
+}
+
+.float { /* element floats ontop of below element, below element wraps around floated   
+    float: left; /*left, right*/
+}
+
+<!DOCTYPE html>
+
+<!-- results in unevent data cells; less modifiable-->
+<table>
+    <tbody>
+        <tr>
+            <td> <Element1 /> </td>
+            <td> <Element2 /> </td>
+        </tr>
+            <td> <Element3 /> </td>
+            <td> <Element4 /> </td>
+    </tbody>
+</table>
+
+<!-- flexbox creates flexible rows, columns to preserve uniformity 
+        forms row by default
+        auto sets all elems to same height
+        displays in listed order
+-->
+<div style="display: flex">
+    <Element />
+    <Element />
+    <Element />
+    <Element />
+</div>
+<!-- to create... set up container/children -->
+<div class="container">
+    <Element class="child" />
+    <Element class="child" />
+    <Element class="child" />
+    <Element class="child" />
+</div>
+In CSS:
+.container {
+    display: flex; /* block -> elems stacked on each other */
+}
+/*
+    flexbox concepts:
+    main/cross axis, flex-start/end, center, space-between/around, stretch, space-evenly
+*/
+
+.flexbox {
+    flex-direction: row; /*row or col, sets main axis along which elems are aligned. cross axis = perpendicular*/
+    flex-direction: row-reverse; /* instead L->R, aligns R->L */
+    flex-wrap: wrap; /* wrap = elems wrap to next line; nowrap; wrap-reverse = wrap opp direction
+    flex-flow: row nowrap; /*flex-direction flex-wrap combination 
+
+    justify-content: flex-start; /*flex-start/end/center: align along start/end/center of container */
+    justify-content: space-around; /*space-around/between: distribute unused space evenly all around elements/all b/w */
+    justify-content: space-evenly; /*nonstandard definition, not all browsers support. DONT USE */
+    justify-content: stretch; /*stretch element so that all space is filled */
+    /*
+    !!--!!--!!--!!IMPORTANT!!--!!--!!--!!
+        align-* : along cross axis 
+        justify-* : along main axis 
+
+        align-items: aligns items in side flex container
+        align-content: aligns flex lines inside flex container (ie +1 order of magnitude)
+    */
+    align-items: baseline; /*aligns elems so all items inside lined up */
+
+    order: 1; /* elems in flex box ordered least to greatest order, default = order listed*/
+    flex-grow: 1; /*1+ = elem can grow to fill remaining main axis space */
+    flex-shrink: /* 1+ = can shrink to account for other elems */
+
+    align-self: /* aligns itself (an elem) in the flex container, overrides flex flow */
+                /* flex-start/end, center, baseline, stretch, auto = inherit parent flow */
+
+    flex-basis: 500px; /* default size of elem on main axis; optional bc flexbox will auto set to elem size */
+    flex: 1 0 500px; /*flex-grow flex-shrink flex-basis combined
+}
+
+/* FLEXBOX END */
+<!-- GRID BEGIN -->
+
+<div id="container">
+  <div class="element">Content</div>
+  <div class="element">Content</div>
+  <div class="element">Content</div>
+</div>
+
+#container {
+    display: grid;
+    grid-template-columns: auto 500px auto; /* can specify sizes OR auto adjust */
+    grid-template-rows: auto auto auto;     /* auto also adjusts to gaps */
+    grid-column-gap: 10px; /* gap b/w cols */
+    grid-row-gap: 5%; /* gap b/w rows */
+}
+
+
