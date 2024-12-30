@@ -67,6 +67,7 @@ body {
     font-style: normal;
     position: relative;
     text-align: center;
+    margin-top: 1em;
 }
 
 .posts-container {
