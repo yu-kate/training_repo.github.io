@@ -1,11 +1,65 @@
 body {
-    background-color: #FDF0D5;
+    background-color: #FEFDFA;
     font-family: 'Times New Roman', Times, serif;
     color: black;
+    margin:0;
+    overflow-x: hidden;
 }
 
+.full-bar{
+    position: relative;
+    background-color: #427AA1;
+    width: 100vmax;   
+    right: +1vw;
+}
+.nav-bar {
+    top: -.5em;  
+}
+.bottom-bar {
+    bottom: -1em;
+}
+
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start stretch;
+    align-items: center;
+    width: 98%;
+}
+
+.nav-item {
+    position: static;
+    color: black;
+    padding: .5em;
+    margin: 0;
+    flex: 0 0 25px;
+
+    font-size: 18px;
+}
+
+#title {
+    position: static;
+    letter-spacing: -3px;
+    color: black;
+    font-size: 50px;
+    font-weight: 800;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+#end-name {
+    position: relative;
+    width: 100%;
+    padding: 1em;
+    left: 92vw;
+}
+
+
+
+
+
 .header {
-    color: #3A7D44;
+    color: #427AA1;
     letter-spacing: 8px;
     font-style: italic;
 }
@@ -14,13 +68,8 @@ body {
     border: 1.5px solid black;
 }
 
-.link {
-    color: #427AA1;
-    font-style: italic;
-}
-
 .post-header {
-    color: #3A7D44;
+    color: #427AA1;
     letter-spacing: normal;
     font-style: italic; 
 }
@@ -30,20 +79,7 @@ body {
     font-weight: lighter;
 }
 
-header {
-    background-color: #3A7D44;
-    padding: 5px;
-    font-weight: bolder ;
-}
-footer {    
-    background-color: #3A7D44;
-    padding: 5px;
-    font-weight: bolder;
-}
-#title {
-    letter-spacing: -3px;
-    color: black;
-}
+
 
 #post-header {
     font-style: normal;
