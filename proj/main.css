@@ -60,6 +60,7 @@ body {
     letter-spacing: 8px;
     font-style: italic;
     margin: 0;
+    text-align: center;
 }
 #post-header {
     font-style: normal;
