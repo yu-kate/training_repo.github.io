@@ -62,6 +62,7 @@ body {
     color: #427AA1;
     letter-spacing: 8px;
     font-style: italic;
+    text-align: center;
 }
 
 .post-container {
@@ -83,4 +84,16 @@ body {
 
 #post-header {
     font-style: normal;
+}
+
+
+
+.description {
+    position: relative;
+    text-align: center;
+    width: 75%;
+    left: 12.5%;
+
+    margin:0;
+
 }
