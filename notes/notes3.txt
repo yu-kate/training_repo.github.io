@@ -83,3 +83,32 @@ addEventListener(string eventName, function callBack)
 
 
 React = library for building user interfaces 
+{code}
+
+ternary operator ex:
+greeting ? greeting : "hello"
+if (greeting) {return greeting;} else {return "hello"}
+
+DOM elements renamed to camelCase
+list of changes: https://legacy.reactjs.org/docs/dom-elements.html
+
+.forEach() //iterates one each value
+  ex: cats.forEach((cat) => {console.log(cat + " meows.")});
+.map() //returns array as result
+.reduce() //accumulate on each value, return result
+
+For above fns, should have add a key for each item/div, allows react to see what changed
+ex: {cats.map((cat)=> <div key={cat}>{cat} wants food :0</div>)}
+
+States:
+useState(0) = default state  
+  useState = state of component w every use
+const [current_state, update_state_fn] = useState(0);
+if clicked, update_state(current_state+1) for ex
+
+Props: acts like a constructor
+function Cats(props) { return <div>{props.name}</div>}
+const cats = ["cat1", "cat2"];
+cats.map((cat) => <Cats name={cat} />) //adds name attribute value
+
+componentDidMount, componentWillUnmount => things happen when the Component starts up and when it is deleted

@@ -5,6 +5,11 @@ body {
     margin:0;
     overflow-x: hidden;
 }
+.no-show-link {
+    font-style: normal;
+    color: inherit;
+    text-decoration: none;
+}
 
 .full-bar{
     position: relative;
@@ -25,8 +30,8 @@ body {
     justify-content: flex-start stretch;
     align-items: center;
     width: 98%;
+    margin: auto;
 }
-
 .nav-item {
     position: static;
     color: black;
@@ -46,14 +51,12 @@ body {
     flex-grow: 1;
     flex-shrink: 1;
 }
-
 #end-name {
     position: relative;
     width: 100%;
     padding: 1em;
     left: 92vw;
 }
-
 
 .header {
     color: #427AA1;
@@ -76,12 +79,13 @@ body {
     justify-content: center stretch;
 
     position: relative;
-    width: 100%;
+    width: 1200px;
+    margin: auto;
 
 }
 .post-item {
     background-color: #DFF0FC;
-    padding: 1em;
+    padding: .5em;
     margin: 1em;
     text-align:center;
     flex-grow: 1;
@@ -93,12 +97,11 @@ body {
     letter-spacing: 2px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: .25em 0 0 0;
+    padding: 0;
 }
 .thumbnail {
     height: 300px;
 }
-
-
 
 .subtext {
     position:relative;
@@ -107,14 +110,6 @@ body {
     margin:0 0 .5em 0;
 }
 
-
-
-#post-header {
-    font-style: normal;
-}
-
-
-
 .description {
     position: relative;
     text-align: center;
@@ -122,5 +117,6 @@ body {
     left: 12.5%;
 
     margin:0;
-
 }
+
+
