@@ -50,3 +50,18 @@ see assets,metadata,andCSs/stylingTips for instructions on tailwind css installa
 npm install -D sass 
     for .scss and .sass extensions
     + combination .module.scss/sass
+
+pre-rendering = generates HTML for the page in advance
+hydration = runs js code when page loaded by browser
+
+static generation = prerendering method that gens HTML at build time, html generated is reused
+    faster, use whenever possible to pre-render page ahead of user's request
+server-side rendering = gens html upon each request
+    slower, pre-rendered page will always be up-to-date
+can set which gen to create hybrid next.js app
+
+static generation w/o data = just html generated
+static generation w/ data = cannot render html w/o fetching external data
+    export async function getStaticProps() {
+        const data = external_data;
+        return {props};}
