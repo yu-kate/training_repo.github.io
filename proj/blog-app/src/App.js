@@ -218,7 +218,6 @@ function LikesComponent({index}) {
     setSavedLikes();
   }, [likesCounter]);
 
-
   return <div>
     <button onClick={() => setLikesCounter(likesCounter+1)}>Upvote</button>
     <span>{likesCounter>0 ? "+" : ''}{likesCounter}</span>
