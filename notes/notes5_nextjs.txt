@@ -65,3 +65,14 @@ static generation w/ data = cannot render html w/o fetching external data
     export async function getStaticProps() {
         const data = external_data;
         return {props};}
+    only runs on server-side
+    in production, runs at build time
+
+for ssr
+    export async function getServerSideProps(context) {return {props: {//something},};}
+    context = request specific parameters 
+
+client-side rendering = static generate pages not requiring external data  
+    then, when page loads, use js to fetch data for rest of page
+
+next.js react hook for data fetching = SWR (search up if needed)
