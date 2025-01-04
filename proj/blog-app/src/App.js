@@ -1,5 +1,6 @@
 import './App.css';
 import { useState, useEffect, use } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 // function PersistentStateComponent() {
 //   // Get the initial state from localStorage or default to an empty string
@@ -87,17 +88,27 @@ export default function Blog() {
   }, [])
   
   return (
-    <>
-      <ResetSavedContent />
-      <div id="main-container">
-      <PostList blogContent={blogContent} />
-      <Input
-        handlePost={handlePost}
-      />
-      </div>
-    </>
+    // <BrowserRouter>
+      <Routes>
+        <Route exact path='/'
+          element={
+            <>
+            <ResetSavedContent />
+            <div id="main-container">
+              <PostList blogContent={blogContent} />
+              <Input
+                handlePost={handlePost}
+              />
+            </div>
+            </>
+          }/>
+        <Route exact path='/posts/*'
+          element={<PostPage />} />
+      </Routes>
+    // </BrowserRouter>
   );
 }
+
 
 function Input(props) {
     const [date, setDate] = useState("");
@@ -208,10 +219,17 @@ function Post({ content, index }) {
   const body = content[4];
   const preview = body.slice(0, 200) + "...";
 
+  //let numIndex = index;
+  // function numIndex() {return numIndex;}
+  function generateLink() {
+    let x = '/posts/' + index;
+    return x;
+  }
+
   return <div class="post-item">
     <div class="post-item-container">
         <img class="thumbnail" src={thumbnail} alt={title}/>
-        <div class="post-title">{title}</div>
+        <div class="post-title"><Link to={generateLink()}>{title}</Link></div>
         <div class="post-preview">{preview}</div>
         <div class="subtext post-date">{date}</div>
         <div class="post-author">{author}</div>
@@ -248,3 +266,6 @@ function LikesComponent({index}) {
   </div>
 }
 
+function PostPage({index}) {
+  return <div>hi</div>;
+}
