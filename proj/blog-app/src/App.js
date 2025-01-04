@@ -72,13 +72,29 @@ export default function Blog() {
     setSavedContent();
   }, [blogContent]);
 
+  useEffect(() => {
+    console.log("pre savedContent", getSavedContent());
+    const post1 = ['2024-12-31', '"Love, Actually": Not a Movie Loved by Me, Actually', 'John Doe',
+      'https://www.themoviedb.org/t/p/original/fWgoECxHGq8Xgbjpi9yhCWkEZDl.jpg',
+      'Lorem ipsum odor amet, consectetuer adipiscing elit. Inceptos orci semper quam per neque tempor. Dapibus platea vel volutpat elit sociosqu tempus. Euismod habitant eleifend mattis sem sollicitudin. Ligula velit scelerisque laoreet ipsum, felis posuere morbi. Feugiat arcu aliquet felis nullam tincidunt fusce consectetur.\nFringilla enim diam, iaculis aliquet accumsan primis in. Inceptos netus fames diam purus vivamus. Non velit interdum egestas commodo luctus pellentesque dapibus posuere convallis. Amet efficitur phasellus mollis aliquam ligula natoque diam purus amet. Natoque risus vulputate at per placerat erat blandit. Nam eu ut hac tincidunt maecenas amet mauris rutrum.'
+    ];
+    const post2 = ['2024-12-31', 'The All-Too-Familiar Chaos in "National Lampoon\'s Christmas Vacation"', 'Jane Doe',
+      'https://th.bing.com/th/id/R.1a840290e1d6ea5c07fd3a7b53ec4f70?rik=o1E7aN7nAwYoUQ&pid=ImgRaw&r=0',
+      'Lorem ipsum odor amet, consectetuer adipiscing elit. Vel mollis habitasse nec netus porttitor ante velit natoque. Mauris id semper class faucibus luctus quisque ligula. Platea nam parturient eros nulla nascetur suspendisse. Ac velit nibh ipsum vulputate mollis semper eget nibh. Mollis senectus netus proin quam; proin consectetur ultricies venenatis. Velit sem litora; sodales mauris penatibus pharetra. Cubilia tortor lectus ridiculus facilisis maximus dignissim sollicitudin.\nHabitasse fames pellentesque maecenas felis aenean metus? Porttitor feugiat magnis neque per sodales. Commodo imperdiet blandit feugiat sociosqu feugiat rutrum consequat malesuada. Class rutrum semper magnis, amet maecenas aliquam. Libero taciti convallis rutrum cubilia cras dignissim nulla. Dapibus lectus bibendum mi nibh mi nec facilisi ac. Quis odio ex maximus odio litora semper netus magna. Massa risus lobortis urna dignissim; finibus arcu ex consectetur!\nCras sapien aptent pulvinar potenti tempor maximus habitasse. Sapien dolor eget ut odio tortor dignissim; sem ultricies suspendisse. Per litora suspendisse nibh vestibulum blandit mollis. Nam sapien ligula facilisis facilisis euismod porttitor congue lorem. Fusce nec mattis purus lacinia eu purus sed. Taciti eros dui nam sollicitudin tincidunt duis, convallis pulvinar pharetra. Lacinia phasellus mauris interdum nullam habitasse leo libero. Sit massa maximus litora nulla dapibus pretium. Primis congue lectus luctus arcu pharetra porta bibendum.'
+    ];
+    const initBlogContent = [post1, post2];
+    setBlogContent(initBlogContent);
+  }, [])
+  
   return (
     <>
       <ResetSavedContent />
+      <div id="main-container">
       <PostList blogContent={blogContent} />
       <Input
         handlePost={handlePost}
       />
+      </div>
     </>
   );
 }
@@ -109,59 +125,62 @@ function Input(props) {
             }
             if (isValid) {props.handlePost(input)};
         }
-        return <button onClick={handleClick} type="button">Post</button>;
+        return <button onClick={handleClick} type="button" id="post-button">Post</button>;
     }
 
   return (
-    <>
-        <h2 class="header">Submit a Post!</h2>
-        <form class="input-container">
-            <div>
-            <label><p class="input-header">Date:</p></label><br/>
-            <input
-                type="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)} //onChange={(t) => onContentChange(t.target.value)}
-            />
-            </div>
-            <div>
-            <label><p class="input-header">Title:</p></label><br/>
-            <input
+    <form class="input-container">
+      <h2 class="header">submit a post!</h2>
+        <div>
+        <label><p class="input-header">Date:</p></label><br/> 
+        <input
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)} //onChange={(t) => onContentChange(t.target.value)}
+            class="input-field"
+        />
+        </div>
+        <div>
+        <label><p class="input-header">Title:</p></label><br/>
+        <textarea
+            type="txt"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            class="input-field"
+        />
+        </div>
+        <div>
+        <label><p class="input-header">Author:</p></label><br/>
+        <textarea
+            type="txt"
+            value={author}
+            onChange={(e) => setAuthor(e.target.value)} 
+            class="input-field" id="author-input"
+        />
+        </div>
+        <div>
+            <label><p class="input-header">Thumbnail(URL):</p></label><br/>
+            <textarea
                 type="txt"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                value={thumbnail}
+                onChange={(e)=>setThumbnail(e.target.value)}
+                class="input-field"
             />
-            </div>
-            <div>
-            <label><p class="input-header">Author:</p></label><br/>
-            <input
-                type="txt"
-                value={author}
-                onChange={(e) => setAuthor(e.target.value)} 
-            />
-            </div>
-            <div>
-                <label><p class="input-header">Thumbnail(URL):</p></label><br/>
-                <input
-                    type="txt"
-                    value={thumbnail}
-                    onChange={(e)=>setThumbnail(e.target.value)}
-                />
-            </div>
-            <div>
-            <label><p class="input-header">Body:</p></label><br/>
-            <input
-                type="txt"
-                value={body}
-                onChange={(e) => setBody(e.target.value)} 
-            />
-            </div>
-            <div>
-            {/* <button type="button" onClick={OnPost}>Post</button> */}
-            <PostButton />
-            </div>
-        </form>
-    </>
+        </div>
+        <div>
+        <label><p class="input-header">Body:</p></label><br/>
+        <textarea
+            type="txt"
+            value={body}
+            onChange={(e) => setBody(e.target.value)} 
+            class="input-field" id="body-input"
+        />
+        </div>
+        <div>
+        {/* <button type="button" onClick={OnPost}>Post</button> */}
+        <PostButton />
+        </div>
+    </form>
   );
 }
 
@@ -170,6 +189,7 @@ function PostList({ blogContent }) {
   if (!blogContent) return;
   return (
     <div class="posts-container">
+      <h2 class="header">recent posts</h2>
       <ul>
         {blogContent.map((content, index) => {
           return <li key={index}><Post content={content} index={index}/></li>
@@ -186,16 +206,15 @@ function Post({ content, index }) {
   const author = content[2];
   const thumbnail = content[3];
   const body = content[4];
+  const preview = body.slice(0, 200) + "...";
 
   return <div class="post-item">
     <div class="post-item-container">
-        {/* src placeholder */}
-        <img class="thumbnail" src='https://cdn4.vectorstock.com/i/1000x1000/82/33/person-gray-photo-placeholder-woman-vector-24138233.jpg' alt={title}/>
-        <div class="post-subject">{title}</div>
-        <div class="subtext details">
-            <p>{date}</p>
-            <p>{author}</p>
-        </div>
+        <img class="thumbnail" src={thumbnail} alt={title}/>
+        <div class="post-title">{title}</div>
+        <div class="post-preview">{preview}</div>
+        <div class="subtext post-date">{date}</div>
+        <div class="post-author">{author}</div>
         <LikesComponent index={index}/>
     </div>
     </div>;
@@ -218,11 +237,14 @@ function LikesComponent({index}) {
     setSavedLikes();
   }, [likesCounter]);
 
-
-  return <div>
-    <button onClick={() => setLikesCounter(likesCounter+1)}>Upvote</button>
-    <span>{likesCounter>0 ? "+" : ''}{likesCounter}</span>
-    <button onClick={() => setLikesCounter(likesCounter-1)}>Downvote</button>
+  return <div class="likes-counter">
+    <button onClick={() => setLikesCounter(likesCounter+1)}>
+      <img src="images/upvote-button.png" alt="upvote" class="like-button"/>
+    </button>
+    <span class="num-likes">{likesCounter>0 ? "+" : ''}{likesCounter}</span>
+    <button onClick={() => setLikesCounter(likesCounter-1)}>
+      <img src="images/downvote-button.png" alt="downvote" class="like-button"/>
+    </button>
   </div>
 }
 
