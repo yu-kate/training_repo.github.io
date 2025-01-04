@@ -1,0 +1,51 @@
+typescript has static type definitions
+all javascript is valid typescript, but not all ts is valid js
+
+: symbol to declare types expected
+function fn(a: number, b:number): number {...}
+    if inputs not numbers, compilation error
+
+interfaces describe an object in terms of its types
+interface Obj {
+    att: {
+        att1: string;
+        att2: string;
+    }
+    att3: string;
+}
+this can then be used as a data type
+    ex: function fn(a: Obj): Obj {...} or
+        const newThing: Obj = {...}
+
+file type = .tsx (not .js)
+
+Enums: sets specific values to member
+ex: enum Direction {Up, Down, Left, Right} //Up auto =0, down = 1, etc..
+    enum Direction {Up=1, Down, Left, Right} //down = 2, left=3, etc...
+enum Themes {Dark = 'dark', LIGHT = 'light', COLORFUL = 'colorful'}
+interface something {
+    setting: Themes; //valid types for the setting are DARK, LIGHT, COLORFUL
+}
+
+REACT lifestyle
+1. mounted = component first gets rendered
+2. rerendered = if component changes in some way and needs update
+3. unmounted = leaves screen
+
+useEffect (hook like useState) = is an effect that occurs every time component is used
+    parameters: fn, optional dependency array
+useEffect(() => {
+  console.log("componentDidMount");
+}, []); //empty array = fn only called on initial mount
+useEffect(() => {
+  console.log("componentDidUpdate!"); // no array = fn called everytime component updates (endless loop bc updates will trigger each other)
+  return () => { // optional cleanup fn
+    console.log("componentWillUnmount");
+  };
+});
+
+prop drilling: passing down logic that is used across multiple components
+    linear code flow bc only parent --> child
+    child comps only updated if props passed down to them change, not based off parent state change
+    BUT tedious to remove/add specific props for each generation/child
+    also over-forwarding props issue = generation may not need the props and only carry it for next generation

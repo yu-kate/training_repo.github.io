@@ -1,0 +1,55 @@
+JSX = JS + HTM
+component = piece of reusable code representing part of UI
+    render, manage, update UI elems
+
+export: makes fn accessible outside react file
+default: indicates following is main fn
+export default function Square () {..}
+
+components can only return a SINGLE jsx element, so if trying to return
+    for ex multiple buttons, need to wrap in fragments = <> </>
+
+first-class functions mean function can be used like an object
+    for ex: fn square returns a square
+        anywhere in a diff fn where a square is needed, instead of html a square, just use 
+            <Square />
+
+in fn, parameters encased like {param_name} = props = properties
+    when prop used in fn, encase in {} to escape into JS from html
+
+in main fn, can declare other fns to handle events like a click
+    1. create fn to do something on event(ex: handleClick() {...})
+    2. add to return item (ex: <button onClick={handleClick}...)
+
+useState = built in fn to keep track of state (duh, basically a counter)
+to use, 
+    const [value, setValue] = useState(null);
+        value = the value  
+        setValue = fn to change value
+        null = initial value of value
+
+always better to declare shared state in parent comp and have parents pass props down to children
+    ex: lifting state into parent component 
+        follow above: const [square, setSquare] = useState(Array(9).fill(null));
+            9 item array of nulls
+
+can pass in a function from default fn as a prop
+    ex: in fn square: onSquareClick passed in for onclick={onSquareClick}
+        in fn board: onSquareClick={handleClick}
+            since in default, now define handleClick
+
+when call a fn in initial render (ex: handleClick() instead of just handleClick which is just passed as a prop),
+    will lead to infinite rerenders
+to avoid infinite loop, use arrow fn
+
+lifting state up = creating a higher-level parent component, creating a state that can be passed into
+    its child component (who now doesn't need a state)
+
+to transformo one array into another, use array map method
+    ex: [1, 2, 3].map((x)=>x*2; //[2, 4, 6]
+    can transform num array into array of react elements (like buttons)
+
+key property used to differentiate list items from each other
+    react uses key to see what doesn't have to be remade/changed when rerendering
+    using array index as key causes trouble when reordering/inserting/deleting items
+    only have to be unique b/w comps and siblings

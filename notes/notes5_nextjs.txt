@@ -1,0 +1,78 @@
+next.js tutorial
+
+Link component 'next/link' to link b/w pages in application 
+    accepts props
+    need to | import Link from 'next/link';
+    replaces anchor tag
+
+client-side navigation = page transition uses js (faster than default browser)
+using Link, whole BROWSER refreshes unlike w anchor tags
+
+code splitting = page only loads what's necessary for page
+    efficient,compartmentalized
+when Link component is in current viewport, linked page code is prefetched!
+
+files inside public dir can be accessed + displayed
+
+next/image = nextjs Image comp = extension of HTML img
+    by default supports image optimization
+    optimizes images on demand
+        lazy-loaded, bthen load in viewport
+
+<Head></Head> (not <head></head>) = react comp built into next
+    import Head from 'next/head';
+
+import Script from 'next/script';
+    extension of HTML <script>
+    optimizes concurrent scripts
+additional props:
+    strategy = when 3rd party script should load
+    onLoad = additional code to immediately run after script finished loading
+
+CSS modules = scope CSS @ component level w/o unique class names (bc auto generates classnames for you)
+    to use, file type = .module.css
+    then, import into .js file (of correspondign name) + give alias like 'styles'
+        set className={styles.selector} (selector = container or something)
+
+global CSS = css loaded by every page
+    create _app.js file in pages/
+        wraps all pages, keep state here or add global styles
+        need to restart server when add
+    can import global CSS from pages/_app.js
+file can be placed anywhere w/ any name
+
+clsx library, can toggle class names
+    yarn add clsx
+
+can compile PostCSS
+see assets,metadata,andCSs/stylingTips for instructions on tailwind css installation
+
+npm install -D sass 
+    for .scss and .sass extensions
+    + combination .module.scss/sass
+
+pre-rendering = generates HTML for the page in advance
+hydration = runs js code when page loaded by browser
+
+static generation = prerendering method that gens HTML at build time, html generated is reused
+    faster, use whenever possible to pre-render page ahead of user's request
+server-side rendering = gens html upon each request
+    slower, pre-rendered page will always be up-to-date
+can set which gen to create hybrid next.js app
+
+static generation w/o data = just html generated
+static generation w/ data = cannot render html w/o fetching external data
+    export async function getStaticProps() {
+        const data = external_data;
+        return {props};}
+    only runs on server-side
+    in production, runs at build time
+
+for ssr
+    export async function getServerSideProps(context) {return {props: {//something},};}
+    context = request specific parameters 
+
+client-side rendering = static generate pages not requiring external data  
+    then, when page loads, use js to fetch data for rest of page
+
+next.js react hook for data fetching = SWR (search up if needed)
