@@ -1,33 +1,10 @@
 import './App.css';
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-// function PersistentStateComponent() {
-//   // Get the initial state from localStorage or default to an empty string
-//   const [name, setName] = useState(() => {
-//     const savedName = localStorage.getItem('name');
-//     return savedName ? savedName : ''; // If no name is saved, default to an empty string
-//   });
-
-//   // Effect hook to store the state in localStorage whenever it changes
-//   useEffect(() => {
-//     if (name) {
-//       localStorage.setItem('name', name); // Save state to localStorage
-//     }
-//   }, [name]); // Runs every time `name` changes
-
-//   return (
-//     <div>
-//       <h1>Persistent State with LocalStorage</h1>
-//       <input
-//         type="text"
-//         value={name}
-//         onChange={(e) => setName(e.target.value)} // Update state when input changes
-//       />
-//       <p>Your name: {name}</p>
-//     </div>
-//   );
-// }
+import Input from './Input';
+import PostList from './PostList';
+import PostPage from './PostPage';
 
 export default function Blog() {
   
@@ -109,163 +86,155 @@ export default function Blog() {
   );
 }
 
+// function Input(props) {
+//     const [date, setDate] = useState("");
+//     const [title, setTitle] = useState("");
+//     const [author, setAuthor] = useState("");
+//     const [thumbnail, setThumbnail] = useState("");
+//     const [body, setBody] = useState("");
+//     let input = [date, title, author, thumbnail, body];
 
-function Input(props) {
-    const [date, setDate] = useState("");
-    const [title, setTitle] = useState("");
-    const [author, setAuthor] = useState("");
-    const [thumbnail, setThumbnail] = useState("");
-    const [body, setBody] = useState("");
-    let input = [date, title, author, thumbnail, body];
+//     const PostButton = () => {
+//         const [clicked, setClicked] = useState(false);
+//         // const [test, setTest] = useState(1);
+//         const [input, setInput] = useState(["", "", "", "", ""]);
+//         const handleClick = () => {setClicked(!clicked);};
 
-    const PostButton = () => {
-        const [clicked, setClicked] = useState(false);
-        // const [test, setTest] = useState(1);
-        const [input, setInput] = useState(["", "", "", "", ""]);
-        const handleClick = () => {setClicked(!clicked);};
+//         useEffect(() => {
+//             if (clicked) {
+//                 setInput([date, title, author, thumbnail, body]);
+//             }}, [clicked]); 
 
-        useEffect(() => {
-            if (clicked) {
-                setInput([date, title, author, thumbnail, body]);
-            }}, [clicked]); 
+//         if(clicked) {
+//             let isValid = true;
+//             for (var index in input) {
+//                 if (input[index]=='') isValid = false;
+//             }
+//             if (isValid) {props.handlePost(input)};
+//         }
+//         return <button onClick={handleClick} type="button" id="post-button">Post</button>;
+//     }
 
-        if(clicked) {
-            let isValid = true;
-            for (var index in input) {
-                if (input[index]=='') isValid = false;
-            }
-            if (isValid) {props.handlePost(input)};
-        }
-        return <button onClick={handleClick} type="button" id="post-button">Post</button>;
-    }
+//   return (
+//     <form class="input-container">
+//       <h2 class="header">submit a post!</h2>
+//         <div>
+//         <label><p class="input-header">Date:</p></label><br/> 
+//         <input
+//             type="date"
+//             value={date}
+//             onChange={(e) => setDate(e.target.value)} //onChange={(t) => onContentChange(t.target.value)}
+//             class="input-field"
+//         />
+//         </div>
+//         <div>
+//         <label><p class="input-header">Title:</p></label><br/>
+//         <textarea
+//             type="txt"
+//             value={title}
+//             onChange={(e) => setTitle(e.target.value)}
+//             class="input-field"
+//         />
+//         </div>
+//         <div>
+//         <label><p class="input-header">Author:</p></label><br/>
+//         <textarea
+//             type="txt"
+//             value={author}
+//             onChange={(e) => setAuthor(e.target.value)} 
+//             class="input-field" id="author-input"
+//         />
+//         </div>
+//         <div>
+//             <label><p class="input-header">Thumbnail(URL):</p></label><br/>
+//             <textarea
+//                 type="txt"
+//                 value={thumbnail}
+//                 onChange={(e)=>setThumbnail(e.target.value)}
+//                 class="input-field"
+//             />
+//         </div>
+//         <div>
+//         <label><p class="input-header">Body:</p></label><br/>
+//         <textarea
+//             type="txt"
+//             value={body}
+//             onChange={(e) => setBody(e.target.value)} 
+//             class="input-field" id="body-input"
+//         />
+//         </div>
+//         <div>
+//         {/* <button type="button" onClick={OnPost}>Post</button> */}
+//         <PostButton />
+//         </div>
+//     </form>
+//   );
+// }
 
-  return (
-    <form class="input-container">
-      <h2 class="header">submit a post!</h2>
-        <div>
-        <label><p class="input-header">Date:</p></label><br/> 
-        <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)} //onChange={(t) => onContentChange(t.target.value)}
-            class="input-field"
-        />
-        </div>
-        <div>
-        <label><p class="input-header">Title:</p></label><br/>
-        <textarea
-            type="txt"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            class="input-field"
-        />
-        </div>
-        <div>
-        <label><p class="input-header">Author:</p></label><br/>
-        <textarea
-            type="txt"
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)} 
-            class="input-field" id="author-input"
-        />
-        </div>
-        <div>
-            <label><p class="input-header">Thumbnail(URL):</p></label><br/>
-            <textarea
-                type="txt"
-                value={thumbnail}
-                onChange={(e)=>setThumbnail(e.target.value)}
-                class="input-field"
-            />
-        </div>
-        <div>
-        <label><p class="input-header">Body:</p></label><br/>
-        <textarea
-            type="txt"
-            value={body}
-            onChange={(e) => setBody(e.target.value)} 
-            class="input-field" id="body-input"
-        />
-        </div>
-        <div>
-        {/* <button type="button" onClick={OnPost}>Post</button> */}
-        <PostButton />
-        </div>
-    </form>
-  );
-}
+// function PostList({ blogContent }) {
+//   // {console.log("blogContent", blogContent)}
+//   if (!blogContent) return;
+//   return (
+//     <div class="posts-container">
+//       <h2 class="header">recent posts</h2>
+//       <ul>
+//         {blogContent.map((content, index) => {
+//           return <li key={index}><Post content={content} index={index}/></li>
+//         })}
+//       </ul>
+//     </div>
+//   );
+// }
 
-function PostList({ blogContent }) {
-  // {console.log("blogContent", blogContent)}
-  if (!blogContent) return;
-  return (
-    <div class="posts-container">
-      <h2 class="header">recent posts</h2>
-      <ul>
-        {blogContent.map((content, index) => {
-          return <li key={index}><Post content={content} index={index}/></li>
-        })}
-      </ul>
-    </div>
-  );
-}
+// function Post({ content, index }) {
+//   if (!content) return;
+//   const date = content[0];
+//   const title = content[1];
+//   const author = content[2];
+//   const thumbnail = content[3];
+//   const body = content[4];
+//   const preview = body.slice(0, 200) + "...";
 
-function Post({ content, index }) {
-  if (!content) return;
-  const date = content[0];
-  const title = content[1];
-  const author = content[2];
-  const thumbnail = content[3];
-  const body = content[4];
-  const preview = body.slice(0, 200) + "...";
+//   return <div class="post-item">
+//     <div class="post-item-container">
+//         <img class="thumbnail" src={thumbnail} alt={title}/>
+//         <div class="post-title">{title}</div>
+//         <div class="post-preview">{preview}</div>
+//         <div class="subtext post-date">{date}</div>
+//         <div class="post-author">{author}</div>
+//         <LikesComponent index={index}/>
+//     </div>
+//     </div>;
+// }
 
-  //let numIndex = index;
-  // function numIndex() {return numIndex;}
-  function generateLink() {
-    let x = '/posts/' + index;
-    return x;
-  }
+// function LikesComponent({index}) {
+//   const [likesCounter, setLikesCounter] = useState(() => {
+//     const savedLikes = getSavedLikes();
+//     return savedLikes;
+//   });
+//   function setSavedLikes() {
+//     localStorage.setItem(String("savedLikes"+index), JSON.stringify(likesCounter));
+//   }
+//   function getSavedLikes() {
+//     const savedLikes = JSON.parse(localStorage.getItem(String("savedLikes"+index)));
+//     if (savedLikes==null) return 0;
+//     return savedLikes;
+//   }
+//   useEffect(() => {
+//     setSavedLikes();
+//   }, [likesCounter]);
 
-  return <div class="post-item">
-    <div class="post-item-container">
-        <img class="thumbnail" src={thumbnail} alt={title}/>
-        <div class="post-title"><Link to={generateLink()}>{title}</Link></div>
-        <div class="post-preview">{preview}</div>
-        <div class="subtext post-date">{date}</div>
-        <div class="post-author">{author}</div>
-        <LikesComponent index={index}/>
-    </div>
-    </div>;
-}
+//   return <div class="likes-counter">
+//     <button onClick={() => setLikesCounter(likesCounter+1)}>
+//       <img src="images/upvote-button.png" alt="upvote" class="like-button"/>
+//     </button>
+//     <span class="num-likes">{likesCounter>0 ? "+" : ''}{likesCounter}</span>
+//     <button onClick={() => setLikesCounter(likesCounter-1)}>
+//       <img src="images/downvote-button.png" alt="downvote" class="like-button"/>
+//     </button>
+//   </div>
+// }
 
-function LikesComponent({index}) {
-  const [likesCounter, setLikesCounter] = useState(() => {
-    const savedLikes = getSavedLikes();
-    return savedLikes;
-  });
-  function setSavedLikes() {
-    localStorage.setItem(String("savedLikes"+index), JSON.stringify(likesCounter));
-  }
-  function getSavedLikes() {
-    const savedLikes = JSON.parse(localStorage.getItem(String("savedLikes"+index)));
-    if (savedLikes==null) return 0;
-    return savedLikes;
-  }
-  useEffect(() => {
-    setSavedLikes();
-  }, [likesCounter]);
-
-  return <div class="likes-counter">
-    <button onClick={() => setLikesCounter(likesCounter+1)}>
-      <img src="images/upvote-button.png" alt="upvote" class="like-button"/>
-    </button>
-    <span class="num-likes">{likesCounter>0 ? "+" : ''}{likesCounter}</span>
-    <button onClick={() => setLikesCounter(likesCounter-1)}>
-      <img src="images/downvote-button.png" alt="downvote" class="like-button"/>
-    </button>
-  </div>
-}
-
-function PostPage({index}) {
-  return <div>hi</div>;
-}
+// function PostPage({index}) {
+//   return <div>hi</div>;
+// }
