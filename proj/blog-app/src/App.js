@@ -29,23 +29,22 @@ import { useState, useEffect, use } from "react";
 // }
 
 export default function Blog() {
-
+  
   const [blogContent, setBlogContent] = useState(() => {
     const savedContent = getSavedContent();
-    console.log("savedContent", savedContent);
+    // console.log("savedContent", savedContent);
     return savedContent;
   });
   function setSavedContent() {
-    console.log("setSavedContent entered");
-    //let modifiedSavedContent = [...blogContent, ...getSavedContent()];
-    console.log("what is being saved: ", blogContent);
+    // console.log("setSavedContent entered");
+    // console.log("what is being saved: ", blogContent);
     localStorage.setItem("savedContent", JSON.stringify(blogContent));
-    console.log("updated SavedContent", getSavedContent());
+    // console.log("updated SavedContent", getSavedContent());
   }
   function getSavedContent() {
-    console.log("getSavedContent entered");
+    // console.log("getSavedContent entered");
     const savedContent = JSON.parse(localStorage.getItem("savedContent"));
-    console.log("retrieved savedContent", savedContent);
+    // console.log("retrieved savedContent", savedContent);
     if (savedContent==null) {return null;}
     return savedContent;
   }
@@ -56,17 +55,6 @@ export default function Blog() {
     }
     return <button onClick={reset}>reset</button>;
   }
-  // const [blogContent, setBlogContent] = useState(() => {
-  //   const savedContent = localStorage.getItem("blogContent");
-  //   if (!savedContent) return "";
-  //   return savedContent;
-  // })
-  // useEffect (() => {
-  //   if(blogContent) {
-  //     localStorage.setItem("blogContent", blogContent);
-  //   }
-  //   console.log("updatedblogContent", blogContent);
-  // }, [blogContent]);
 
   const handlePost = (input) => {
     // console.log("handlePost reached");
@@ -80,9 +68,9 @@ export default function Blog() {
     });
   }
   useEffect(() => {
-    console.log("useEffect entered");
+    // console.log("useEffect entered");
     setSavedContent();
-  }, [blogContent])
+  }, [blogContent]);
 
   return (
     <>
@@ -184,14 +172,14 @@ function PostList({ blogContent }) {
     <div class="posts-container">
       <ul>
         {blogContent.map((content, index) => {
-          return <li key={index}><Post content={content} /></li>
+          return <li key={index}><Post content={content} index={index}/></li>
         })}
       </ul>
     </div>
   );
 }
 
-function Post({ content }) {
+function Post({ content, index }) {
   if (!content) return;
   const date = content[0];
   const title = content[1];
@@ -208,13 +196,29 @@ function Post({ content }) {
             <p>{date}</p>
             <p>{author}</p>
         </div>
-        <LikesComponent />
+        <LikesComponent index={index}/>
     </div>
     </div>;
 }
 
-function LikesComponent() {
-  const [likesCounter, setLikesCounter] = useState(0);
+function LikesComponent({index}) {
+  const [likesCounter, setLikesCounter] = useState(() => {
+    const savedLikes = getSavedLikes();
+    return savedLikes;
+  });
+  function setSavedLikes() {
+    localStorage.setItem(String("savedLikes"+index), JSON.stringify(likesCounter));
+  }
+  function getSavedLikes() {
+    const savedLikes = JSON.parse(localStorage.getItem(String("savedLikes"+index)));
+    if (savedLikes==null) return 0;
+    return savedLikes;
+  }
+  useEffect(() => {
+    setSavedLikes();
+  }, [likesCounter]);
+
+
   return <div>
     <button onClick={() => setLikesCounter(likesCounter+1)}>Upvote</button>
     <span>{likesCounter>0 ? "+" : ''}{likesCounter}</span>
