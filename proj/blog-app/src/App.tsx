@@ -1,13 +1,13 @@
 import './App.css';
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import React from "react";
 
 import Input from './Input';
 import PostList from './PostList';
 import PostPage from './PostPage';
 
 export default function Blog() {
-  
   const [blogContent, setBlogContent] = useState(() => {
     const savedContent = getSavedContent();
     // console.log("savedContent", savedContent);
@@ -21,7 +21,7 @@ export default function Blog() {
   }
   function getSavedContent() {
     // console.log("getSavedContent entered");
-    const savedContent = JSON.parse(localStorage.getItem("savedContent"));
+    const savedContent = JSON.parse(localStorage.getItem("savedContent") || "");
     // console.log("retrieved savedContent", savedContent);
     if (savedContent==null) {return null;}
     return savedContent;
@@ -34,7 +34,10 @@ export default function Blog() {
     return <button onClick={reset}>reset</button>;
   }
 
-  const handlePost = (input) => {
+  interface handlePostProps {
+    input: Array<string>;
+  }
+  const handlePost = (input: handlePostProps) => {
     // console.log("handlePost reached");
     console.log("hp input", input);
 
@@ -45,6 +48,17 @@ export default function Blog() {
       return updatedBlogContent;
     });
   }
+
+  // function handlePost(props: {input: handlePostInput}) {
+  //   console.log("hp input", input);
+
+  //   setBlogContent(()=>{
+  //     let updatedBlogContent = [...blogContent];
+  //     updatedBlogContent.unshift(input);
+  //     //console.log("unshift", updatedBlogContent);
+  //     return updatedBlogContent;
+  //   });
+  // }
   useEffect(() => {
     // console.log("useEffect entered");
     setSavedContent();
@@ -65,9 +79,9 @@ export default function Blog() {
   }, [])
   
   return (
-    // <BrowserRouter>
+    //<Router>
       <Routes>
-        <Route exact path='/'
+        <Route path='/'
           element={
             <>
             <ResetSavedContent />
@@ -79,10 +93,10 @@ export default function Blog() {
             </div>
             </>
           }/>
-        <Route exact path='/posts/*'
-          element={<PostPage />} />
+        <Route path='/posts/*'
+          element={<PostPage index={0}/>} />
       </Routes>
-    // </BrowserRouter>
+    //</Router>
   );
 }
 
