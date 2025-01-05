@@ -49,3 +49,20 @@ prop drilling: passing down logic that is used across multiple components
     child comps only updated if props passed down to them change, not based off parent state change
     BUT tedious to remove/add specific props for each generation/child
     also over-forwarding props issue = generation may not need the props and only carry it for next generation
+
+useReducer: useState but for managing functional component states
+    const [state, dispatch] = useReducer(reducer, initialState);
+    state = current value
+    dispatch = fn that specifies reducer fn + triggers re-render (useState fn)
+    reducer = returns next state
+function handleIncrement() { dispatch({type:""increment"}); }
+function reducer(state, action) {
+    switch (action.type) {
+        case "increment":
+            return {...state, count:state.count+1};  
+            // "count" = property of state
+        default:
+            return "Uncreognized command";
+    }
+}
+

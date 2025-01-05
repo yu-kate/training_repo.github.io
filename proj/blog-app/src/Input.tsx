@@ -1,4 +1,4 @@
-import App from './App.js';
+// import App from './App.js';
 import { useState, useEffect } from "react";
 import React, {FC} from "react";
 

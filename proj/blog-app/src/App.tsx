@@ -8,21 +8,18 @@ import PostList from './PostList';
 import PostPage from './PostPage';
 
 export default function Blog() {
+  // interface blogContentProps {
+  //   blogContent: any;
+  // }
   const [blogContent, setBlogContent] = useState(() => {
     const savedContent = getSavedContent();
-    // console.log("savedContent", savedContent);
     return savedContent;
   });
   function setSavedContent() {
-    // console.log("setSavedContent entered");
-    // console.log("what is being saved: ", blogContent);
     localStorage.setItem("savedContent", JSON.stringify(blogContent));
-    // console.log("updated SavedContent", getSavedContent());
   }
   function getSavedContent() {
-    // console.log("getSavedContent entered");
     const savedContent = JSON.parse(localStorage.getItem("savedContent") || "");
-    // console.log("retrieved savedContent", savedContent);
     if (savedContent==null) {return null;}
     return savedContent;
   }
@@ -38,7 +35,6 @@ export default function Blog() {
     input: Array<string>;
   }
   const handlePost = (input: handlePostProps) => {
-    // console.log("handlePost reached");
     console.log("hp input", input);
 
     setBlogContent(()=>{
@@ -49,18 +45,7 @@ export default function Blog() {
     });
   }
 
-  // function handlePost(props: {input: handlePostInput}) {
-  //   console.log("hp input", input);
-
-  //   setBlogContent(()=>{
-  //     let updatedBlogContent = [...blogContent];
-  //     updatedBlogContent.unshift(input);
-  //     //console.log("unshift", updatedBlogContent);
-  //     return updatedBlogContent;
-  //   });
-  // }
   useEffect(() => {
-    // console.log("useEffect entered");
     setSavedContent();
   }, [blogContent]);
 
@@ -79,24 +64,22 @@ export default function Blog() {
   }, [])
   
   return (
-    //<Router>
-      <Routes>
-        <Route path='/'
-          element={
-            <>
-            <ResetSavedContent />
-            <div id="main-container">
-              <PostList blogContent={blogContent} />
-              <Input
-                handlePost={handlePost}
-              />
-            </div>
-            </>
-          }/>
-        <Route path='/posts/*'
-          element={<PostPage index={0}/>} />
-      </Routes>
-    //</Router>
+    <Routes>
+      <Route path='/'
+        element={
+          <>
+          <ResetSavedContent />
+          <div id="main-container">
+            <PostList blogContent={blogContent} />
+            <Input
+              handlePost={handlePost}
+            />
+          </div>
+          </>
+        }/>
+      <Route path='/posts/:index'
+        element={<PostPage allPageContent={blogContent}/>} />
+    </Routes>
   );
 }
 
