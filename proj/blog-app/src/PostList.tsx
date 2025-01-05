@@ -3,6 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import {BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
+import LikesCounter from './LikesCounter';
 
 interface PostListProps {
   blogContent: Array<Array<string>>;
@@ -48,40 +49,40 @@ function Post({ content, index }: PostProps) {
         <div className="post-preview">{preview}</div>
         <div className="subtext post-date">{date}</div>
         <div className="post-author">{author}</div>
-        <LikesComponent index={index}/>
+        <LikesCounter index={index}/>
     </div>
     </div>;
 }
 
-interface LikesProps {
-  index: Number;
-}
-function LikesComponent({index}: LikesProps) {
-const [likesCounter, setLikesCounter] = useState(() => {
-    const savedLikes = getSavedLikes();
-    return savedLikes;
-});
-function setSavedLikes() {
-    localStorage.setItem(String("savedLikes"+index), JSON.stringify(likesCounter));
-}
-function getSavedLikes() {
-    const savedLikes = JSON.parse(localStorage.getItem(String("savedLikes"+index)) || '0');
-    if (savedLikes==null) return 0;
-    return savedLikes;
-}
-useEffect(() => {
-    setSavedLikes();
-}, [likesCounter]);
+// interface LikesProps {
+//   index: Number;
+// }
+// function LikesComponent({index}: LikesProps) {
+// const [likesCounter, setLikesCounter] = useState(() => {
+//     const savedLikes = getSavedLikes();
+//     return savedLikes;
+// });
+// function setSavedLikes() {
+//     localStorage.setItem(String("savedLikes"+index), JSON.stringify(likesCounter));
+// }
+// function getSavedLikes() {
+//     const savedLikes = JSON.parse(localStorage.getItem(String("savedLikes"+index)) || '0');
+//     if (savedLikes==null) return 0;
+//     return savedLikes;
+// }
+// useEffect(() => {
+//     setSavedLikes();
+// }, [likesCounter]);
 
-return <div className="likes-counter">
-    <button onClick={() => setLikesCounter(likesCounter+1)}>
-    <img src="images/upvote-button.png" alt="upvote" className="like-button"/>
-    </button>
-    <span className="num-likes">{likesCounter>0 ? "+" : ''}{likesCounter}</span>
-    <button onClick={() => setLikesCounter(likesCounter-1)}>
-    <img src="images/downvote-button.png" alt="downvote" className="like-button"/>
-    </button>
-</div>
-}
+// return <div className="likes-counter">
+//     <button onClick={() => setLikesCounter(likesCounter+1)}>
+//     <img src="images/upvote-button.png" alt="upvote" className="like-button"/>
+//     </button>
+//     <span className="num-likes">{likesCounter>0 ? "+" : ''}{likesCounter}</span>
+//     <button onClick={() => setLikesCounter(likesCounter-1)}>
+//     <img src="images/downvote-button.png" alt="downvote" className="like-button"/>
+//     </button>
+// </div>
+// }
 
 export default PostList;
