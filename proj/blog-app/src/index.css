@@ -107,12 +107,7 @@ body {
 }
 .post-item-container {
   display:grid;
-  /* grid-template-columns: [first] 175px [divider] auto [bottom];
-  grid-template-rows: [row1] auto [row2] 25% [row3];
-  grid-template-areas:
-    "thumbnail title"
-    "thumbnail details"; */
-  grid-template-rows: [row1] 1rem [row2] auto [row25] auto [row3] 2rem [row4];
+  grid-template-rows: [row1] 1rem [row2] auto [row25] 5rem [row3] 2rem [row4];
   grid-template-columns: [col1] 220px [col2] 1fr [col3] 1fr;
   grid-template-areas:
     "thumbnail date ."
@@ -120,7 +115,6 @@ body {
     "thumbnail preview preview"
     "thumbnail author likes";
   justify-items: start;
-  
 }
 .thumbnail {
   grid-area: thumbnail;
@@ -144,6 +138,10 @@ body {
 .post-preview {
   grid-area: preview;
 }
+.post-body {
+  grid-area: body;
+  border: thin solid black;
+}
 .post-author{
   grid-area: author;
 }
@@ -155,6 +153,65 @@ body {
   width: 3rem;
   padding: 0 .25rem;
 }
+
+.post-page{
+  padding: 2rem;
+}
+.post-page {
+  display: grid;
+  grid-template-columns: [col1] 65% [col2] 35% [col3];
+  grid-template-rows: [row1] auto [row2] auto [row3] auto [row4] auto [row5];
+  grid-column-gap: 0;
+  grid-row-gap: 0;
+  grid-template-areas:
+    "date side"
+    "title side"
+    "author side"
+    "body side";
+  
+  width: 80%;
+  margin: auto;
+}
+.post-page .post-date {
+  font-size: 20px;
+  position: relative;
+  left: 2%;
+}
+.post-page .post-title {
+  font-size: 50px;
+  letter-spacing: 0;
+  margin: 0;
+  padding: 0;
+}
+.post-page .post-author {
+  font-size: 25px;
+  position: relative;
+  left: 2%;
+  margin: 1rem 0;
+}
+.post-page .post-body {
+  width: 90%;
+  margin: auto;
+  padding: 1rem;
+  line-height: 1.5rem;
+  font-size: 20px;
+}
+.post-page .post-side {
+  grid-area: side;
+  text-align: center;
+  align-content: start;
+}
+.post-page .picture {
+  position: sticky;
+  top: 1rem;
+  width: 95%;
+  border: thin solid black;
+}
+/* .post-page .likes-counter {
+  position: sticky;
+  bottom: 1rem;
+} */
+
 
 .input-container {
   grid-area:input;
@@ -191,7 +248,7 @@ body {
   position:relative;
   font-style: italic;
   font-weight: lighter;
-  margin:0 0 .5em 0;
+  margin:0;
 }
 
 .description {
