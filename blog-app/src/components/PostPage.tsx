@@ -1,8 +1,5 @@
-//import App from './App.js';
 import React from "react";
 import { useParams } from "react-router-dom";
-
-import LikesCounter from './LikesCounter';
 
 interface PostPageProps {
     //FIND BETTER TYPE 
@@ -30,7 +27,6 @@ export default function PostPage({allPageContent}: PostPageProps) {
             <div className="post-body">{body}</div>
             <div className="post-side">
                 <img className="picture" src={picture} alt={title} />
-                {/* <LikesCounter index={Number(index)} /> */}
             </div>
         </div>
     )
