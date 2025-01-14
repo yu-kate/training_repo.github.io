@@ -45,9 +45,9 @@ Two example posts are hard-coded into the page (to showcase a real post) that, w
 ## Subcomponents
 ### PostList
 
-![post-list](readme_images/post-list.png "Post List")
+<img src="readme_images/post-list.png" alt="drawing" width="50%"/>
 
-A flexbox (to accomodate for different poster sizes adn title lengths) that houses a post's preview. It consists of a thumbnail image, the date on which the post was submitted, the post's title, the first 200 characters of the post's main writing/body, and a likes counter.
+A flexbox (to accomodate for different poster sizes and title lengths) that houses a post's preview. It consists of a thumbnail image, the date on which the post was submitted, the post's title, the first 200 characters of the post's main writing/body, and a likes counter.
 
 ### PostPage
 
@@ -60,7 +60,7 @@ Simply two buttons to 'upvote' and 'downvote' a post that displays the net numbe
 
 ### Input
 
-![input](readme_images/input.png "Input")
+<img src="readme_images/input.png" alt="input" width="200"/>
 
 Each input field corresponds to an element in an array that, when the post is submitted, is then added to the web-app's main array `blogContent`.
 
