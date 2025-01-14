@@ -26,11 +26,11 @@ export default function LikesCounter({index}: LikesProps) {
     return (
     <div className="likes-counter">
         <button onClick={() => setLikesCounter(likesCounter+1)}>
-        <img src="/src/images/upvote-button" alt="upvote" className="like-button"/>
+        <img src="../../images/upvote-button.png" alt="upvote" className="like-button"/>
         </button>
         <span className="num-likes">{likesCounter>0 ? "+" : ''}{likesCounter}</span>
         <button onClick={() => setLikesCounter(likesCounter-1)}>
-        <img src="/src/images/downvote-button" alt="downvote" className="like-button"/>
+        <img src="../../images/downvote-button" alt="downvote" className="like-button"/>
         </button>
     </div>);
 }

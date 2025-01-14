@@ -20,13 +20,13 @@ export default function Blog() {
     if (savedContent==null) {return null;}
     return savedContent;
   }
-  const ResetSavedContent = () => {
-    function reset() {
-      setBlogContent([""]);
-      setSavedContent();
-    }
-    return <button onClick={reset}>reset</button>;
-  }
+  // const ResetSavedContent = () => {
+  //   function reset() {
+  //     setBlogContent([""]);
+  //     setSavedContent();
+  //   }
+  //   return <button onClick={reset}>reset</button>;
+  // }
 
   interface handlePostProps {
     input: Array<string>;
@@ -66,7 +66,7 @@ export default function Blog() {
       <Route path='/'
         element={
           <>
-          <ResetSavedContent />
+          {/* <ResetSavedContent /> */}
           <div id="main-container">
             <PostList blogContent={blogContent} />
             <Input
